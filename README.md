@@ -92,42 +92,54 @@ Testbench for Traffic Light Controller
 
 module traffic_light_controller_tb;
 
-    // Inputs
+    // Inputs to the module (reg type in testbench)
     reg clk;
     reg reset;
 
-    // Outputs
+    // Outputs from the module (wire type in testbench)
     wire [2:0] lights;
 
-    // Instantiate the Unit Under Test (UUT)
+    // Instantiate the traffic_light_controller module
     traffic_light_controller uut (
         .clk(clk),
         .reset(reset),
         .lights(lights)
     );
 
-    // Clock generation
-    always #5 clk = ~clk;  // Toggle clock every 5 ns
+    // Clock generation: 10ns period
+    always begin
+        #5 clk = ~clk;  // Toggle clock every 5 time units (10 ns clock period)
+    end
 
-    // Test procedure
+    // Initial block to apply stimulus (inputs)
     initial begin
         // Initialize inputs
         clk = 0;
-        reset = 1;
+        reset = 1;  // Start with reset active
+        
+        // Wait for a few cycles with reset asserted
+        #20;
+        reset = 0;  // Release reset after 20ns
 
-        // Release reset after some time
-        #10 reset = 0;
+        // Let the simulation run for a while
+        #1000;
 
-        // Run simulation for 100 ns to observe light transitions
-        #100 $stop;
+        // End simulation
+        $finish;
     end
 
-    // Monitor outputs
+    // Monitor the outputs during the simulation
     initial begin
-        $monitor("Time=%0t | Lights (R Y G) = %b", $time, lights);
+        // Print header
+        $display("Time\tReset\tLights");
+        $monitor("%d\t%b\t%b", $time, reset, lights);
     end
 
 endmodule
+output
+![Screenshot 2024-10-04 193950](https://github.com/user-attachments/assets/76ed0d0a-66f3-4729-9415-e05cb3cf4be0)
+
+
 
 
 Conclusion
