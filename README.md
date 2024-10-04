@@ -4,7 +4,7 @@ To design and simulate a traffic light controller using Verilog HDL, and verify 
 
 Apparatus Required
 Vivado 2023.1 or equivalent Verilog simulation tool.
-Computer system with a suitable operating system.
+Computer system with a suitable operating system
 FPGA board (optional for hardware verification).
 Procedure
 Launch Vivado 2023.1:
