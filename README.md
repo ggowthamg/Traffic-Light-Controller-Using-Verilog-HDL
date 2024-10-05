@@ -84,6 +84,9 @@ module traffic_light_controller (
         endcase
     end
 endmodule
+output
+![Screenshot 2024-10-04 at 20 31 13_ead4cab1](https://github.com/user-attachments/assets/95ee9b96-0f67-4da7-b20f-b533bfddbb54)
+
 
 Testbench for Traffic Light Controller
 
